@@ -65,7 +65,8 @@
   // 네이버페이 버튼(공식 버튼·큰 초록 버튼 모두 결국 .npay_btn_pay 클릭): InitiateCheckout
   var npayDone = false;
   document.addEventListener('click', function (e) {
-    var t = e.target && e.target.closest && e.target.closest('.npay_btn_pay, #NaverChk_Button a, .jcd-npay-big');
+    // 진짜 결제 버튼(.npay_btn_pay)만. 같은 칸의 찜·간편구매 안내 링크는 제외. 큰 초록 버튼·랜딩 버튼도 결국 이걸 click() 함
+    var t = e.target && e.target.closest && e.target.closest('.npay_btn_pay');
     if (!t || npayDone) return;
     npayDone = true;
     var d = { currency: 'KRW', payment_method: 'naverpay' };
